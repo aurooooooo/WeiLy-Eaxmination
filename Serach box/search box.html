@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./iconfont/iconfont.css">
+  <style>
+    body{
+      background-color: aqua;
+    }
+    .search{
+      margin:400px auto;
+      position: relative;
+      width: 235px;
+      height: 40px;
+      /* background-color: #fff; */
+    }
+    .sea{
+      position: absolute;
+      left: 100px;
+      width: 35px;
+      height: 30px;
+      border-radius: 15px;
+      outline: none;
+      transition: all .5s;
+    }
+    .icon{
+    position: absolute;
+    top: 3px;
+    right:100px;
+    font-size: 28px;
+    transition:all .5s;
+    cursor: pointer;
+    }
+  </style>
+  <title>Document</title>
+  </head>
+  <body>
+  <div class="search">
+    <input type="text"  class="sea">
+    <span class="iconfont icon-icon-test12 icon"></span>
+  </div>
+  <script>
+    let search = document.querySelector('.search')
+    let sea = document.querySelector('.sea')
+    let icon = document.querySelector('.icon')
+
+    // 判断是否是焦点
+    let judge = false
+    // 当鼠标经过就展开
+    search.addEventListener('mouseenter',open)
+    // 当鼠标离开时，没有得到焦点就收缩，有则不收缩
+    search.addEventListener('mouseleave',function(){
+        if(judge) return 
+        close()
+    })
+    // 当搜索框为焦点时展开
+    sea.addEventListener('focus',function(){
+        open()
+        judge = true
+    })
+    // 当搜索框失去焦点时收缩
+    sea.addEventListener('blur',function(){
+        close()
+        judge = false
+    })
+
+    // 展开
+    function open(){
+        sea.style.width = '220px'
+        sea.style.left = '0px' 
+        sea.placeholder = '请输入搜索内容'
+        icon.style.right = '20px'
+    }
+    // 收缩
+    function close(){
+        sea.style.width = '35px'
+        sea.style.left = '100px' 
+        sea.placeholder = ''
+        icon.style.right = '100px'
+    }
+  </script>
+</body>
+</html>
